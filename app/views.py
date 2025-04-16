@@ -53,7 +53,7 @@ def register(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         email = request.POST['email']
-        full_name = request.POST['full_name']
+        full_name = request.POST.get('full_name', username)  # Use username as default if full_name not provided
         
         # Validation
         if User.objects.filter(username=username).exists():
@@ -76,19 +76,15 @@ def register(request):
         try:
             user = User.objects.create_user(
                 username=username,
+                email=email,
                 password=password1,
-                email=email
+                full_name=full_name
             )
-            # Set full name if provided
-            if full_name:
-                user.full_name = full_name
-                user.save()
-            
             login(request, user)
             messages.success(request, 'Registration successful!')
             return redirect('home')
         except Exception as e:
-            messages.error(request, 'An error occurred during registration')
+            messages.error(request, f'An error occurred during registration: {str(e)}')
             return redirect('register')
     
     return render(request, 'register.html')
@@ -211,3 +207,36 @@ def dislike_post(request, post_id):
         'disliked': disliked,
         'total_likes': post.total_likes()
     })
+
+@login_required
+def saved_posts(request):
+    saved_posts = request.user.bookmarks.all().order_by('-created_at')
+    return render(request, 'saved_posts.html', {'posts': saved_posts})
+
+@login_required
+@require_POST
+def toggle_bookmark(request, post_id):
+    post = get_object_or_404(BlogPost, id=post_id)
+    
+    if post in request.user.bookmarks.all():
+        request.user.bookmarks.remove(post)
+        bookmarked = False
+    else:
+        request.user.bookmarks.add(post)
+        bookmarked = True
+    
+    return JsonResponse({
+        'bookmarked': bookmarked
+    })
+
+@login_required
+@require_POST
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    
+    # Check if the user is the author of the comment
+    if request.user == comment.author:
+        comment.delete()
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error', 'message': 'You are not authorized to delete this comment'}, status=403)

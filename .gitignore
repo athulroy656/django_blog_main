@@ -23,14 +23,15 @@ wheels/
 # Django
 *.log
 local_settings.py
+db.sqlite3
 db.sqlite3-journal
 media/
-staticfiles/
 
 # Virtual Environment
 venv/
-env/
 ENV/
+env/
+.env
 
 # IDE
 .idea/
@@ -40,4 +41,12 @@ ENV/
 
 # OS
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Static files
+staticfiles/
+static/
+
+# Migrations
+*/migrations/*.py
+!*/migrations/__init__.py 

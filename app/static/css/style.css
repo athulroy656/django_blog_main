@@ -1,48 +1,47 @@
 /* Modern Blog Theme */
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --background-color: #f8fafc;
-    --text-color: #1e293b;
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --secondary-color: #64748b;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
+    --light-color: #f8fafc;
+    --dark-color: #1e293b;
+    --text-color: #334155;
     --text-muted: #64748b;
-    --card-bg: #ffffff;
     --border-color: #e2e8f0;
-    --hover-color: #3b82f6;
-    --link-color: #2563eb;
-    --link-hover-color: #1e40af;
-    --success-bg: #dcfce7;
-    --success-text: #166534;
-    --danger-bg: #fee2e2;
-    --danger-text: #991b1b;
-    --list-group-bg: #ffffff;
+    --card-bg: #ffffff;
+    --body-bg: #f1f5f9;
+    --list-group-bg: #f8fafc;
     --list-group-hover-bg: #f1f5f9;
-    --list-group-border-color: #e2e8f0;
 }
 
 body {
-    background-color: var(--background-color);
+    background-color: var(--body-bg);
     color: var(--text-color);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
 }
 
 /* Navbar Styling */
 .navbar {
-    background-color: var(--card-bg) !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1rem 0;
 }
 
 .navbar-brand {
     font-weight: 700;
-    font-size: 1.5rem;
     color: var(--primary-color) !important;
+    font-size: 1.5rem;
 }
 
 .nav-link {
     color: var(--text-color) !important;
     font-weight: 500;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem !important;
     transition: color 0.2s ease;
 }
 
@@ -58,21 +57,21 @@ body {
 /* Card Styling */
 .card {
     background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    overflow: hidden;
 }
 
 .card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
-    color: var(--text-color);
+    color: var(--dark-color);
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .card-text {
@@ -81,37 +80,37 @@ body {
 }
 
 /* Button Styling */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
 .btn-primary {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    padding: 0.5rem 1.25rem;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
-    color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
     transform: translateY(-1px);
-    color: white;
 }
 
 /* Form Styling */
 .form-control {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
     color: var(--text-color);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .form-control:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    color: var(--text-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-label {
@@ -128,21 +127,27 @@ body {
 }
 
 .alert-success {
-    background-color: var(--success-bg);
-    color: var(--success-text);
+    background-color: var(--success-color);
+    color: var(--text-color);
 }
 
 .alert-danger {
-    background-color: var(--danger-bg);
-    color: var(--danger-text);
+    background-color: var(--danger-color);
+    color: var(--text-color);
 }
 
 /* Toast Styling */
 .toast {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
     background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
 }
 
 .toast-header {
@@ -157,23 +162,35 @@ body {
 
 /* Links */
 a {
-    color: var(--link-color);
+    color: var(--primary-color);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 a:hover {
-    color: var(--link-hover-color);
+    color: var(--primary-hover);
 }
 
 /* Blog Post Styling */
 .blog-post {
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    padding: 2rem;
     margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.blog-post-title {
+    color: var(--dark-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 2rem;
 }
 
 .blog-post-meta {
     color: var(--text-muted);
     font-size: 0.875rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Author Profile */
@@ -218,12 +235,25 @@ footer a:hover {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+
+    .blog-post {
+        padding: 1.5rem;
+    }
+    
+    .blog-post-title {
+        font-size: 1.5rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
 
 /* List Group Styling */
 .list-group-item {
     background-color: var(--list-group-bg);
-    border-color: var(--list-group-border-color);
+    border-color: var(--border-color);
     color: var(--text-color);
     transition: background-color 0.2s ease;
 }
@@ -398,9 +428,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Blog Detail Page Styling */
 .comment {
-    padding: 1rem;
-    border-radius: 0.5rem;
     background-color: var(--list-group-bg);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
     transition: background-color 0.2s ease;
 }
 
@@ -442,111 +473,176 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-text a {
-    color: var(--link-color);
+    color: var(--primary-color);
     text-decoration: underline;
     transition: color 0.2s ease;
 }
 
 .card-text a:hover {
-    color: var(--link-hover-color);
+    color: var(--primary-hover);
 }
 
 /* Comment Form Styling */
-.form-control {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-}
-
-.form-control:focus {
-    background-color: var(--card-bg);
-    border-color: var(--primary-color);
-    color: var(--text-color);
-    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.1);
-}
-
 .form-control::placeholder {
     color: var(--text-muted);
 }
 
 /* Like Button Styling */
-.btn-like {
+.like-btn {
     background: none;
     border: none;
     padding: 0.5rem;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
+    color: var(--text-muted);
 }
 
-.btn-like:hover {
-    transform: scale(1.1);
+.like-btn:hover {
+    color: var(--success-color);
+    transform: translateY(-1px);
 }
 
-.btn-like i {
-    font-size: 1.25rem;
-    color: #cbd5e1;
-    transition: color 0.2s ease;
+.like-btn.active {
+    color: var(--success-color);
 }
 
-.btn-like i.text-danger {
-    color: #ef4444;
+/* Dislike Button Styling */
+.dislike-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-muted);
 }
 
-.btn-like:hover i:not(.text-danger) {
-    color: #ef4444;
-    opacity: 0.7;
+.dislike-btn:hover {
+    color: var(--danger-color);
+    transform: translateY(-1px);
+}
+
+.dislike-btn.active {
+    color: var(--danger-color);
+}
+
+/* Bookmark Button Styling */
+.bookmark-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-muted);
+}
+
+.bookmark-btn:hover {
+    color: var(--warning-color);
+    transform: translateY(-1px);
+}
+
+.bookmark-btn.active {
+    color: var(--warning-color);
 }
 
 /* Share Button Styling */
-.btn-share {
+.share-btn {
     background: none;
     border: none;
     padding: 0.5rem;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
+    color: var(--text-muted);
 }
 
-.btn-share:hover {
-    transform: scale(1.1);
+.share-btn:hover {
+    color: var(--info-color);
+    transform: translateY(-1px);
 }
 
-.btn-share i {
-    font-size: 1.25rem;
-    color: #64748b;
-    transition: color 0.2s ease;
+#shareOptions {
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
 }
 
-.btn-share:hover i {
-    color: #3b82f6;
+#shareOptions a, #shareOptions button {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
-#share-tooltip {
-    font-size: 0.875rem;
-    font-weight: 500;
+#shareOptions a:hover, #shareOptions button:hover {
+    background-color: var(--list-group-hover-bg);
+    color: var(--primary-color);
 }
 
-.btn-dislike {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: transform 0.2s;
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.btn-dislike:hover {
-    transform: scale(1.1);
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
 }
 
-.btn-dislike i {
-    font-size: 1.2rem;
-    color: #6c757d;
-    transition: color 0.2s;
+/* Loading States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
 }
 
-.btn-dislike:hover i {
-    color: #dc3545;
+.loading::after {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    margin-left: 0.5rem;
 }
 
-.btn-dislike i.text-danger {
-    color: #dc3545;
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Toast Notifications */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--body-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
 } 
